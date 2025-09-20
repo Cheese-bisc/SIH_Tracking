@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhi Bus Tracker - Enhanced</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🚌 Delhi Bus Tracker</h1>
+        <p>Real-time bus tracking with routes and stops</p>
+    </div>
+    
+    <div class="controls">
+        <div class="control-group">
+            <button class="toggle-btn active" id="busToggle" onclick="toggleLayer('buses')">Show Buses</button>
+            <button class="toggle-btn active" id="stopsToggle" onclick="toggleLayer('stops')">Show Stops</button>
+            <button class="toggle-btn active" id="routesToggle" onclick="toggleLayer('routes')">Show Routes</button>
+        </div>
+        <div class="control-group">
+            <button class="refresh-btn" onclick="fetchAllData()">🔄 Refresh All</button>
+            <div class="status loading" id="status">Initializing...</div>
+        </div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="info-panel">
+        <h3>Live Statistics</h3>
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>Active Buses</h4>
+                <p class="number" id="busCount">0</p>
+            </div>
+            <div class="info-card">
+                <h4>Bus Stops</h4>
+                <p class="number" id="stopCount">0</p>
+            </div>
+            <div class="info-card">
+                <h4>Routes</h4>
+                <p class="number" id="routeCount">0</p>
+            </div>
+            <div class="info-card">
+                <h4>Last Updated</h4>
+                <p class="number" id="lastUpdate" style="font-size: 0.9rem;">Never</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="legend">
+        <h3>Map Legend</h3>
+        <div class="legend-item">
+            <span class="legend-icon">🚌</span>
+            <span>Active Bus</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-icon stop-marker"></div>
+            <span>Bus Stop</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-icon" style="background: #3498db; width: 30px; height: 3px; border-radius: 0;"></div>
+            <span>Bus Route</span>
+        </div>
+    </div>
+
+    <!-- External JavaScript Libraries -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/pbf@3.0.5/dist/pbf.js"></script>
+    <script src="https://unpkg.com/gtfs-realtime-pbf-js-module@1.0.0/gtfs-realtime.browser.proto.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
